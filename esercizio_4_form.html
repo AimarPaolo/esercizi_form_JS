@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <title>Esercizio prova 1</title>
+        <meta charset="utf-8">
+        <meta name="author" content="Paolo Aimar">
+        <link rel="stylesheet" href="prova.css">
+        <script>
+            "use strict";
+            function display(x){
+                alert("il nome inserito è: "+x.nome.value);
+                alert("la password inserita è: "+x.pswd.value);
+            }
+            function credenziali(n, c, p){
+                document.getElementById(n).value = "Paolo";
+                document.getElementById(c).value = "Aimar";
+                document.getElementById(p).value = "iloveyou";
+            }
+            function colora(c){
+                document.body.style.backgroundColor = document.getElementById(c).value;
+            }
+            function validateForm(){
+                let formObj = document.prova;
+                // inserisco il nome del form, in questo caso prova
+                if(formObj.nome.value == ""){
+                    alert("NON hai inserito nessun nome");
+                    return false;
+                }
+                else if(formObj.cognome.value == ""){
+                    alert("non hai inserito nessun cognome");
+                    return false;
+                    // si devono inserire tanti if per differenziare tutti i diversi casi, così che l'utente possa sostituire e risolvere
+                    // i problemi
+                }
+                return true;
+            }
+            function change_data(cd, d){
+                document.getElementById(d).value = document.getElementById(cd).value 
+            }
+        </script>
+    </head>
+    <body>
+        <form name="prova" action="login.php" method="get" onsubmit="return validateForm()">
+                <div>inserire il nome: <input type="text" id="nome" minlength="2" maxlength="10" autocomplete="off"></div>
+                <div>inserire il tuo cognome: <input type="text" id="cognome" minlength="2" maxlength="10"></div>
+                <div>inserire la password qui dentro: <input type="password" id="pswd"></div>
+                <div>la data inserita corrisponde a: <input type="text" id="data"></div>
+                <!--I valori di minlength e maxlength vengono utilizzati per obbligare l'utente ad inserire una stringa 
+                dentro al campo di una determinata lunghezza, evitando così che vengano inseriti cognomi troppo corti che non 
+                esistono-->
+                <div>
+                    <input type="submit" value="sottometti">
+                    <input type="reset" value="cancella">
+                    <input type="button" onclick="credenziali('nome', 'cognome', 'pswd')" value="sono Paolo!">
+                    <input type="color" id="colore">
+                    <!--Se viene cliccato il pulsante "button" allora vengono inseriti certi valori nei form-->
+                    <input type="button" onclick="colora('colore')" value="colora tutto!!">
+                    <!--volendo si poteva evitare il pulsante utilizzando il comando onchange, in quel caso il colore cambiava ogni volta
+                    che si inseriva un nuovo colore nella tavola-->
+                    <input class="acapo" type="date" id="inserisci_data" onchange="change_data('inserisci_data', 'data')">
+                </div>
+        </form> 
+    </body>
+</html>
